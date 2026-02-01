@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ecb2c8;
+  --foreground: #f3efe7;
+  --color-first: #d83272;
+  --color-second: #c294b6;
+  --color-third: #500f28;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-first: var(--color-first);
+  --color-second: var(--color-second);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+/* COMPONENTS */
+html, body {
+  height: 100%;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--color-first);
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+  margin-top: 5;
+  margin-bottom: 15;
+  width: 100%;
+  border: 1px solid var(--color-first);
+}
+
+h1 {
+  margin-top: 10 !important;
+  margin-bottom: 5 !important;
+}
+
+/* CUSTOM STYLES */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  min-height: 40dvh;
+  border-radius: 10px;
+  box-shadow: 10 10 10 rgba(175, 8, 147, 0.15);
+  background-color: var(--foreground);
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+/* EXTRA */
+.envelope {
+  border: 2px dashed var(--background);
+  position: relative;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%; /* Match ::before for symmetry */
+  height: 0;
+  border-top: 2px dashed var(--background);
+  transform: translateY(0) rotate(-30deg); /* Angle to center, adjust as needed */
+  transform-origin: right top;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58%; /* Adjust as needed for your box size */
+  height: 0;
+  border-top: 2px dashed var(--background);
+  transform: translateY(0) rotate(30deg); /* Angle to center, adjust as needed */
+  transform-origin: left top;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Source: https://stackoverflow.com/questions/17386168/how-to-create-a-heart-shape-using-css */
+.heart {
+  position: relative;
+  width: 100px;
+  height: 90px;
+  margin-top: 80px;
+  z-index: 3;
+}
+
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 52px;
+  height: 80px;
+  border-radius: 50px 50px 0 0;
+  background: var(--color-first);
+}
+
+.heart::before {
+  left: 50px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
 }
