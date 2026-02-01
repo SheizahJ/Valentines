@@ -1,3 +1,12 @@
+@keyframes spinY {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
 @import "tailwindcss";
 
 :root {
@@ -13,7 +22,8 @@
   --color-foreground: var(--foreground);
   --color-first: var(--color-first);
   --color-second: var(--color-second);
-  --font-sans: var(--font-geist-sans);
+  --font-roboto: var(--font-roboto);
+  --font-playwrite: var(--font-playwrite);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -26,7 +36,7 @@ html, body {
 body {
   background: var(--background);
   color: var(--color-first);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto), Arial, sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -41,6 +51,7 @@ hr {
 h1 {
   margin-top: 10 !important;
   margin-bottom: 5 !important;
+  font-family: var(--font-playwrite);
 }
 
 /* CUSTOM STYLES */
@@ -51,18 +62,28 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  perspective: 800px;
 }
 
 .box {
   display: flex;
   flex-direction: column;
+  margin: 50px;
   width: 40%;
   min-height: 40dvh;
   border-radius: 10px;
   box-shadow: 10 10 10 rgba(175, 8, 147, 0.15);
   background-color: var(--foreground);
   padding: 10px;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(.68,-0.55,.27,1.55);
+  perspective: 800px;
 }
+
+.box.opened {
+  animation: spinY 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
 
 .content {
   flex: 1;
@@ -72,12 +93,12 @@ h1 {
   align-items: center;
   padding: 10px;
   border-radius: 10px;
+  border: 2px dashed var(--background);
 }
 
 
 /* EXTRA */
 .envelope {
-  border: 2px dashed var(--background);
   position: relative;
 }
 
