@@ -10,21 +10,21 @@ export default function Home() {
 
   const handleBoxClick = () => {
     if (opened) return;
-    
+
     setOpened(true);
     setTimeout(() => {
       setShowLetter(true);
       
       setTimeout(() => {
         setDoneSpinning(true);
-      }, 370);
+      }, 350);
     }, 400);
   };
 
   return (
     <>
       {!showLetter && (
-        <h1>Click to Open...</h1>
+        <h1 className="text-center">Click to Open...</h1>
       )}
 
       <div className={`box${opened ? " opened" : ""}${doneSpinning ? " done-spinning" : ""}`} onClick={handleBoxClick}>

@@ -13,7 +13,7 @@
   --background: #ecb2c8;
   --foreground: #f3efe7;
   --color-first: #d83272;
-  --color-second: #c294b6;
+  --color-second: #f0b5e6;
   --color-third: #500f28;
 }
 
@@ -51,6 +51,10 @@ hr {
 h1 {
   margin-top: 10 !important;
   margin-bottom: 5 !important;
+}
+
+h1, h4, p.signature {
+  width: 100%;
   font-family: var(--font-playwrite);
 }
 
@@ -75,9 +79,12 @@ h1 {
   box-shadow: 10 10 10 rgba(175, 8, 147, 0.15);
   background-color: var(--foreground);
   padding: 10px;
-  cursor: pointer;
   transition: transform 0.8s cubic-bezier(.68,-0.55,.27,1.55);
   perspective: 800px;
+}
+
+.box:not(.opened) {
+  cursor: pointer;
 }
 
 .box.opened {
@@ -94,9 +101,25 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   border: 2px dashed var(--background);
+}
+
+.option-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.option-box button {
+  color: var(--foreground);
+  background-color: var(--color-first);
+  padding: 5px 30px;
+  border-radius: 5px;
 }
 
 
