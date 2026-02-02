@@ -6,14 +6,19 @@ import Letter from "./layouts/letter";
 export default function Home() {
   const [opened, setOpened] = useState(false);
   const [showLetter, setShowLetter] = useState(false);
+  const [doneSpinning, setDoneSpinning] = useState(false);
 
   const handleBoxClick = () => {
-    if (!opened) {
-      setOpened(true);
+    if (opened) return;
+    
+    setOpened(true);
+    setTimeout(() => {
+      setShowLetter(true);
+      
       setTimeout(() => {
-        setShowLetter(true);
-      }, 400);
-    }
+        setDoneSpinning(true);
+      }, 370);
+    }, 400);
   };
 
   return (
@@ -22,7 +27,7 @@ export default function Home() {
         <h1>Click to Open...</h1>
       )}
 
-      <div className={`box${opened ? " opened" : ""}`} onClick={handleBoxClick} style={{ cursor: "pointer" }}>
+      <div className={`box${opened ? " opened" : ""}${doneSpinning ? " done-spinning" : ""}`} onClick={handleBoxClick}>
         {showLetter ? (
           <Letter />
         ) : (
