@@ -1,16 +1,33 @@
+import { useState } from "react";
 
 export default function Letter() {
+    const [noMessage, setNoMessage] = useState("No");
+    const [noClickCount, setNoClickCount] = useState(0);
+    const [noEnabled, setNoEnabled] = useState(true);
+
+    const MAX_NO_CLICKS = 20;
+    const MESSAGES = [
+        "lol this button doesn't do anything...",
+        "are you sure?",
+        "you can't get rid of me that easily",
+        "why did you click this...?",
+        "you hate me",
+    ];
 
     const handleYesClick = () => {
         alert("Yes Clicked!");
     };
     
     const handleNoClick = () => {
-        const messages = [
-            "lol this button doesn't do anything..."
-        ];
+        if (noClickCount < MAX_NO_CLICKS) { 
+            var newMessage = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
+            setNoMessage(newMessage);
+            setNoClickCount(noClickCount + 1);
+            return;
+        }
         
-        alert("No Clicked...");
+        setNoEnabled(false);
+        setNoMessage("enough.");
     };
 
     return (
@@ -49,8 +66,12 @@ export default function Letter() {
             </h4>
 
             <div className="option-box">
-                <button type="button" id="yes-btn" onClick={handleYesClick}>Yes</button>
-                <button type="button" id="no-btn" onClick={handleNoClick}>No</button>
+                <button type="button" onClick={handleYesClick}>
+                    Yes
+                </button>
+                <button type="button" onClick={handleNoClick} className={noEnabled ? "" : "disabled"} disabled={!noEnabled}>
+                    {noMessage}
+                </button>
             </div>
         </div>
     );
