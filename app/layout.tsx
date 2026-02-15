@@ -33,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${playwrite.variable} ${geistMono.variable} antialiased`}
       >
+        <script src="/scripts/confetti.js"></script>
         <div className="main">
           {children}
         </div>

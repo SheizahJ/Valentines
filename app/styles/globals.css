@@ -27,6 +27,15 @@
   }
 }
 
+@keyframes moveSpinUp {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: translateY(-1000px) rotateY(720deg);
+  }
+}
+
 
 /* COMPONENTS */
 html, body {
@@ -53,7 +62,7 @@ h1 {
   margin-bottom: 5 !important;
 }
 
-h1, h4, p.signature {
+h1, h3, h4, p.signature {
   width: 100%;
   font-family: var(--font-playwrite);
 }
@@ -81,6 +90,7 @@ h1, h4, p.signature {
   padding: 10px;
   transition: transform 0.8s cubic-bezier(.68,-0.55,.27,1.55);
   perspective: 800px;
+  z-index: 2;
 }
 
 .box:not(.opened) {
@@ -93,6 +103,14 @@ h1, h4, p.signature {
 
 .box.opened .content, .done-spinning {
   transform: rotateY(180deg);
+}
+
+.box.yes {
+  animation: moveSpinUp 2s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+.hide {
+  display: none;
 }
 
 .content {
@@ -127,6 +145,11 @@ h1, h4, p.signature {
   cursor: not-allowed;
 }
 
+.celebration {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
 
 /* EXTRA */
 .envelope {

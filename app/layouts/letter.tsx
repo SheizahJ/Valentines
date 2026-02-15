@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-export default function Letter() {
+interface LetterProps {
+  yesClicked: boolean;
+  setYesClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setYesDone: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Letter({ yesClicked, setYesClicked, setYesDone }: LetterProps) {
     const [noMessage, setNoMessage] = useState("No");
     const [noClickCount, setNoClickCount] = useState(0);
     const [noEnabled, setNoEnabled] = useState(true);
@@ -15,10 +21,16 @@ export default function Letter() {
     ];
 
     const handleYesClick = () => {
-        alert("Yes Clicked!");
+        setYesClicked(true);
+
+        setTimeout(() => {
+            setYesDone(true);
+        }, 1800);
     };
     
     const handleNoClick = () => {
+        if (yesClicked) return;
+
         if (noClickCount < MAX_NO_CLICKS) { 
             var newMessage = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
             setNoMessage(newMessage);
@@ -31,39 +43,31 @@ export default function Letter() {
     };
 
     return (
-        <div className="content">
-            <h1 className="text-center">Some Title Here</h1>
+        <div className={`content`}>
+            <h1 className="text-center">Letter To My Beloved</h1>
+            <br />
+
             <hr />
 
             <p className="fst-italic fw-bold signature">
-                My Dearest, Some Name
+                My Dearest, Domo Jones
             </p>
 
             <p className="text-center">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut corporis necessitatibus perferendis suscipit velit cupiditate vitae laboriosam et animi voluptatibus beatae laborum magni voluptatem, sunt commodi vel nihil repudiandae quasi.
-            </p>
-            <p className="text-center">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut corporis necessitatibus perferendis suscipit velit cupiditate vitae laboriosam et animi voluptatibus beatae laborum magni voluptatem, sunt commodi vel nihil repudiandae quasi.
-            </p>
-            <p className="text-center">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut corporis necessitatibus perferendis suscipit velit cupiditate vitae laboriosam et animi voluptatibus beatae laborum magni voluptatem, sunt commodi vel nihil repudiandae quasi.
-            </p>
-            <p className="text-center">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut corporis necessitatibus perferendis suscipit velit cupiditate vitae laboriosam et animi voluptatibus beatae laborum magni voluptatem, sunt commodi vel nihil repudiandae quasi.
-            </p>
-            <p className="text-center">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut corporis necessitatibus perferendis suscipit velit cupiditate vitae laboriosam et animi voluptatibus beatae laborum magni voluptatem, sunt commodi vel nihil repudiandae quasi.
+                You may be a poopy butt... but you're MY poopy butt.
             </p>
 
             <p className="text-end fst-italic fw-bold signature">
-                Yours Truly, Some Other Name
+                Yours Truly, Sheizah Jimenez
             </p>
 
             <br />
 
-            <h4 className="text-center">
-                Some Question Here?
-            </h4>
+            <h3 className="text-center">
+                Will You Be My Valentine?
+            </h3>
+
+            <br />
 
             <div className="option-box">
                 <button type="button" onClick={handleYesClick}>
