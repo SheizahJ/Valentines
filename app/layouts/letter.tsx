@@ -50,15 +50,17 @@ export default function Letter({ yesClicked, setYesClicked, setYesDone }: Letter
             <hr />
 
             <p className="fst-italic fw-bold signature">
-                My Dearest, Domo Jones
+                My Dearest, NAME_HERE
             </p>
 
             <p className="text-center">
-                You may be a poopy butt... but you're MY poopy butt.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit iusto quibusdam beatae culpa incidunt, 
+                autem temporibus. Vel totam delectus ea, nam quaerat eaque exercitationem repellendus. Animi maiores 
+                similique quis earum?
             </p>
 
             <p className="text-end fst-italic fw-bold signature">
-                Yours Truly, Sheizah Jimenez
+                Yours Truly, NAME_HERE
             </p>
 
             <br />
